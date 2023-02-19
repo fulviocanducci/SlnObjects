@@ -1,0 +1,46 @@
+﻿@model PrjObjects.Models.People
+@{
+   ViewData["Title"] = "Create";
+}
+<h1>Create</h1>
+<h4>People</h4>
+<hr />
+<div class="row">
+   <div class="col-md-4 mb-1">
+      <form asp-action="Create">
+         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+         <div class="form-group mb-1">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+         </div>
+         <div class="form-group mb-1">
+            <label asp-for="Site.Value" class="control-label"></label>
+            <input asp-for="Site.Value" class="form-control" />
+            <span asp-validation-for="Site.Value" class="text-danger"></span>
+         </div>         
+         <div class="form-group mb-1">
+            <label asp-for="Value" class="control-label"></label>
+            <input asp-for="Value" class="form-control text-end" asp-format="{0:N2}" />
+            <span asp-validation-for="Value" class="text-danger"></span>
+         </div>    
+         <div class="form-group mb-1 mt-2">
+            <input type="submit" value="Create" class="btn btn-primary" />
+         </div>
+      </form>
+   </div>
+</div>
+<div class="mt-1 mb-1">
+   <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+   <script src="~/js/jquery.maskmoney.min.js"></script>
+   @{
+      await Html.RenderPartialAsync("_ValidationScriptsPartial");
+   }
+   <script>
+      $(function() {
+          $("#Value").maskMoney({ thousands: '.', decimal: ',', allowZero: true, suffix: '' });
+      });
+   </script>
+}
